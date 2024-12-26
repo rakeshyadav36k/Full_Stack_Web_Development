@@ -8,6 +8,7 @@ require("dotenv").config();
 app.use(cors());  // middleware
 app.use(express.json());
 
+// connect the mongoDB using mongoose
 mongoose.connect(process.env.MONGO_URL, {
     // useNewUrlParser : true,
     // useUnifiedTopology : true
@@ -19,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL, {
 })
 
 
-
+// created the server
 const server = app.listen(process.env.PORT, ()=>{
     console.log(`Server started on Port ${process.env.PORT}`);
 })
