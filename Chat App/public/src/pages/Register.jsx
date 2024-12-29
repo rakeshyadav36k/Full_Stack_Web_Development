@@ -127,6 +127,8 @@ const FormContainer = styled.div`
 export default Register;
 
 
+// the below css are not correct but i have to determine the error
+
 // const FormContainer = styled.div`
 //   height : 100vh;
 //   width : 100vw;
