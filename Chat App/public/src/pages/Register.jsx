@@ -63,7 +63,7 @@ const FormContainer = styled.div`
   align-items : center;
   background-color : #131324
   .brand {
-    display : felx;
+    display : flex;
     align-items : center;
     gap : 1rem;
     justify-content : center;
