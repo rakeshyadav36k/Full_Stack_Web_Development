@@ -9,10 +9,10 @@ require("dotenv").config();
 app.use(cors());  // middleware
 app.use(express.json());
 
-// stich the routes
-app.use("api/auth", userRoutes);
+// stich the routes to the server
+app.use("/api/auth", userRoutes);
 
-// connect the mongoDB using mongoose
+// connect the mongoDB using mongoosehttp://localhost:5000
 mongoose.connect(process.env.MONGO_URL, {
     // useNewUrlParser : true,             // in current version of of these two statement are not required
     // useUnifiedTopology : true
