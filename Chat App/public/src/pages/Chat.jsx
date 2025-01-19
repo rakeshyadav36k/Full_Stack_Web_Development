@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { allUserRoute } from '../utils/APIRoutes';
+import Contacts from '../components/Contacts';
 
 function Chat() {
   const [contacts, setContacts] = useState([]);
@@ -10,29 +11,35 @@ function Chat() {
   const navigate = useNavigate();
 
   // in both useEffect we have to add cleanup function
-  useEffect(async() => {
-    if(!localStorage.getItem("chat-app-user")){
-        navigate("/login");
-    } else{
-      setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")))
-    }
-  }, [])
-
-  useEffect(async()=>{
-    if(currentUser){
-      if(currentUser.isAvatarImageSet){
-        const data = await axios.get(`${allUserRoute}/${currentUser._id}`)
-        setContacts(data.data)
+  useEffect(() => {
+    const fn = async() =>{
+      if(!localStorage.getItem("chat-app-user")){
+          navigate("/login");
       } else{
-        navigate("/setAvatar")
+        setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")))
       }
     }
+    fn()  // this is basically a  cleanup function because in useEffect, we can't make the function as async
+  }, [])
+
+  useEffect( ()=> {
+    const fetchData = async() =>{  // this is cleanup function
+      if(currentUser){
+        if(currentUser.isAvatarImageSet){
+          const data = await axios.get(`${allUserRoute}/${currentUser._id}`)
+          setContacts(data.data)
+        } else{
+          navigate("/setAvatar")
+        }
+      }
+    }
+    fetchData()
   }, [currentUser])
 
   return (
     <Container>
       <div className="container">
-
+        <Contacts contacts = {contacts} currentUser = {currentUser} />
       </div>
     </Container>
   )
