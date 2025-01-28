@@ -18,7 +18,7 @@ export default function Contacts({contacts, currentUser}) {
       {
         currentUserImage && currentUserName && (
             <Container>
-                <div className="brand">
+                <div className="brand"> 
                     <img src={Logo} alt="logo" />
                     <h3>snappy</h3>
                 </div>
