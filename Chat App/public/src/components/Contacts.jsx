@@ -13,7 +13,7 @@ export default function Contacts({contacts, currentUser}) {
           setCurrentUserName(currentUser.username)
         }
     },[currentUser])
-    console.log(currentUserImage);
+    // console.log(currentUserImage);
     // console.log(currentUserName);
     
     const changeCurrentChat = (index, contact) => {}

@@ -10,6 +10,8 @@ import { Buffer } from 'buffer'
 
 export default function SetAvatar() {
     const api = "https://api.multiavatar.com/45678945";
+    // const api = "https://cors-anywhere.herokuapp.com/https://api.multiavatar.com/45678945";
+    // const api = "https://api.allorigins.win/raw?url=https://api.multiavatar.com/45678945";
     const navigate = useNavigate();
     const [avatars, setAvatars] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -42,9 +44,11 @@ export default function SetAvatar() {
                 user.isAvatarImageSet = true;
                 user.avatarImage = data.image;
                 localStorage.setItem("chat-app-user", JSON.stringify(user));
+                console.log("Updated local storage:", JSON.stringify(user));
                 navigate('/');
             } else{
                 toast.error("Error setting avatar. Please try again", toastOptions);
+                console.error("Error setting avatar:", error);
             }
         }
     }
