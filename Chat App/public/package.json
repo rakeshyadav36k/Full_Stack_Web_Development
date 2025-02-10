@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@multiavatar/multiavatar": "^1.0.7",
     "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "react": "^18.3.1",
