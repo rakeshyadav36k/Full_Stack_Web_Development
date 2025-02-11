@@ -36,7 +36,7 @@ export default function SetAvatar() {
         } else{
             const user = await JSON.parse(localStorage.getItem("chat-app-user"))
             const {data} = await axios.post(`${setAvatarRoute}/${user._id}`,{
-                image : avatars[selectedAvatar],
+                image : avatars[selectedAvatar].svg,
             })
 
             if(data.isSet) {
@@ -44,6 +44,7 @@ export default function SetAvatar() {
                 user.avatarImage = data.image;
                 localStorage.setItem("chat-app-user", JSON.stringify(user));
                 console.log("Updated local storage:", JSON.stringify(user));
+                console.log("Avatar Image:", data.image);
                 navigate('/');
             } else{
                 toast.error("Error setting avatar. Please try again", toastOptions);
@@ -52,23 +53,38 @@ export default function SetAvatar() {
         }
     }
 
-    useEffect(() => {
-        const fetchData = async() =>{
-            const data = [];
-            for (let i = 0; i < 4; i++) {
-                // const image = await axios.get(
-                //     `${api}/${Math.round(Math.random() * 1000)}`
-                // );
-                const image = multiavatar(`${Math.round(Math.random() * 1000)}`)
-                const buffer = new Buffer(image.data);
-                data.push(buffer.toString("base64"))
-            }
-            setAvatars(data);
-            setIsLoading(false);
-        }
+    // useEffect(() => {
+    //     const fetchData = async() =>{
+    //         const data = [];
+    //         for (let i = 0; i < 4; i++) {
+    //             const image = await axios.get(
+    //                 `${api}/${Math.round(Math.random() * 1000)}`
+    //             );
+    //             const image = multiavatar(`${Math.round(Math.random() * 1000)}`)
+    //             const buffer = new Buffer(image.data);
+    //             data.push(buffer.toString("base64"))
+    //         }
+    //         setAvatars(data);
+    //         setIsLoading(false);
+    //     }
 
-        fetchData();
-    }, [])
+    //     fetchData();
+    // }, [])
+
+    useEffect(()=>{
+      const avatarIds = [];
+      for(let i = 0; i < 4; i++){
+        const randomNum = `${Math.round(Math.random()*10000)}`;
+        avatarIds.push(randomNum)
+      }
+      const avatarObjects = avatarIds.map((id)=>({
+        svg: encodeURIComponent(multiavatar(id)),
+      }))
+
+      setAvatars(avatarObjects);
+      setIsLoading(false);
+    },[])
+
     return (
         <>
             {
@@ -91,9 +107,9 @@ export default function SetAvatar() {
                               }`}
                             >
                               <img
-                                src={`data:image/svg+xml;base64,${avatar}`}
+                                src={`data:image/svg+xml;utf8,${avatar.svg}`}
                                 alt="avatar"
-                                key={avatar}
+                                key={avatar.svg}
                                 onClick={() => setSelectedAvatar(index)}
                               />
                             </div>
