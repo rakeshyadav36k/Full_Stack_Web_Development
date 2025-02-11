@@ -53,7 +53,9 @@ module.exports.setAvatar = async(req, res, next) => {
         const userData = await User.findByIdAndUpdate(userId, {
             isAvatarImageSet : true,
             avatarImage,
-        });
+        }, { new: true });
+        console.log("in controller avatar image is :",userData.avatarImage);
+        
         return res.json({
             isSet : userData.isAvatarImageSet,
             image : userData.avatarImage,
