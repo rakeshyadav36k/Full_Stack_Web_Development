@@ -19,7 +19,7 @@ function Chat() {
         setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")))
       }
     }
-    fn()  // this is basically a  cleanup function because in useEffect, we can't make the function as async
+    fn()  // this is basically a  cleanup function because in useEffect, we can't make the callback function as async
   }, [])
 
   useEffect( ()=> {
@@ -45,6 +45,7 @@ function Chat() {
   )
 }
 
+
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
@@ -54,16 +55,16 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   background-color: #131324;
-  .container{
+  .container {
     height: 85vh;
     width: 85vw;
     background-color: #00000076;
     display: grid;
-    grid-template-columns: 25% 75%
-    @media screen and (min-width: 720px) and (max-width: 1080px){
+    grid-template-columns: 25% 75%;
+    @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
     }
   }
-`
+`;
 
 export default Chat

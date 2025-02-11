@@ -13,8 +13,6 @@ export default function Contacts({contacts, currentUser}) {
           setCurrentUserName(currentUser.username)
         }
     },[currentUser])
-    // console.log(currentUserImage);
-    // console.log(currentUserName);
     
     const changeCurrentChat = (index, contact) => {}
   return (
@@ -22,7 +20,6 @@ export default function Contacts({contacts, currentUser}) {
       { 
         currentUserImage && currentUserName && (
           <Container>
-            Hello
             <div className="brand">
               <img src={Logo} alt="logo" />
               <h3>snappy</h3>
@@ -153,49 +150,3 @@ const Container = styled.div`
     }
   }
 `;
-
-/*
-{
-  currentUserImage && currentUserName && (
-      <Container>
-          <div className="brand"> 
-              <img src={Logo} alt="logo" />
-              <h3>snappy</h3>
-          </div>
-          <div className="contacts">
-              {
-                  contacts.map((contact, index)=>{
-                      return (
-                          <div className={`contact ${
-                              index === currentSelected ? "selected" : ""
-                          }`}
-                          key={index}
-                          >
-                              <div className="avatar">
-                                  <img 
-                                  src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                                  alt="avatar"
-                                  />
-                              </div>
-                              <div className="username">
-                                  <h3>{contact.username}</h3>
-                              </div>
-                          </div>
-                      )
-                  })
-              }
-          </div>
-          <div className="current-user">
-              <div className="avatar">
-                  <img 
-                  src={`data:image/svg+xml;base64,${currentUserImage}`}
-                  alt="avatar"
-                  />
-              </div>
-              <div className="username">
-                  <h1>{currentUserName}</h1>
-              </div>
-          </div>
-      </Container>
-  )
-}  */

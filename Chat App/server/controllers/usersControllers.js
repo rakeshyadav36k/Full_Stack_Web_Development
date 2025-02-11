@@ -54,7 +54,6 @@ module.exports.setAvatar = async(req, res, next) => {
             isAvatarImageSet : true,
             avatarImage,
         }, { new: true });
-        console.log("in controller avatar image is :",userData.avatarImage);
         
         return res.json({
             isSet : userData.isAvatarImageSet,
