@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes")
+const messagesRoute = require("./routes/messagesRoute")
 
 const app = express();
 require("dotenv").config();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // stich the routes to the server
 app.use("/api/auth", userRoutes);
+app.use("/api/messages", messagesRoute);
 
 // connect the mongoDB using mongoosehttp://localhost:5000
 mongoose.connect(process.env.MONGO_URL, {
